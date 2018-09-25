@@ -4,17 +4,13 @@ import { ENEMY } from "./utils/consts";
 
 import { Enemy } from "./enemy";
 import { Map } from "./map";
+import { Tower } from "./tower";
 
 export class Engine {
-  constructor() {
+  constructor(options) {
     this.app = null;
-    this.enemy = null;
     this.enemySpawnTime = 6000;
-    this.option = {
-      background: 0x1099bb,
-      height: 630,
-      width: 1120
-    };
+    this.options = options;
 
     this.setup();
   }
@@ -22,16 +18,17 @@ export class Engine {
   setup() {
     this.init();
     this.manageEnemies();
+    this.manageTowers();
   }
 
   init() {
-    let { background, height, width } = this.option;
+    let { background, container, height, width } = this.options;
     this.app = new PIXI.Application(width, height, {
       backgroundColor: background,
       antialias: true
     });
 
-    document.body.appendChild(this.app.view);
+    document.getElementById(container).appendChild(this.app.view);
 
     this.map = new Map(this.app);
   }
@@ -41,7 +38,15 @@ export class Engine {
     setInterval(() => this.spawnEnemy(), this.enemySpawnTime);
   }
 
+  manageTowers() {
+    new Tower(this.app);
+  }
+
   spawnEnemy() {
-    this.enemy = new Enemy(this.app, this.map.pathValues, ENEMY.weak);
+    new Enemy(this.app, this.map.pathValues, ENEMY.weak, this.onEnemyMove);
+  }
+
+  onEnemyMove(position) {
+    // console.log("on move", position);
   }
 }

@@ -32,3 +32,10 @@ export const ENEMY = {
     resistance: 3
   }
 };
+
+export const TOWER = {
+  weak: {
+    asset: "tower.jpg",
+    strength: 1
+  }
+};
