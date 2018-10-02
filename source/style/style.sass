@@ -1,5 +1,14 @@
 $blue: #00f
 
+$button-color: #fff
+$button-background-color: #ccc
+$button-border-color: #ccc
+$button-min-width: 250px
+$button-min-heigth: 30px
+
+$popup-shadow: rgba(0, 0, 0, 0.5)
+$popup-background-color: #ccc
+
 @font-face
   font-family: 'Lato'
   src: url('./fonts/Lato-Regular.ttf')
@@ -27,3 +36,90 @@ a:active
   justify-content: center
   align-items: center
   height: 100%
+  
+.splash-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  flex-direction: column
+  
+.logo-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  padding: 20px
+  width: 100%
+  
+.actions-wrapper
+  display: flex
+  justify-content: space-around
+  align-items: center
+  height: 100%
+  padding: 20px
+  width: 100%
+  
+.button 
+  display: flex
+  color: inherit
+  cursor: pointer
+  padding: 10px
+  text-decoration: none
+  font-family: Lato, sans-serif
+  min-width: $button-min-width
+  min-height: $button-min-heigth
+  justify-content: center
+  align-items: center
+  border: 1px solid $button-border-color
+  background-color: $button-background-color
+  color: $button-color
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.5)
+  transition: box-shadow 0.4s
+  
+.button:hover,
+.button:focus
+  box-shadow: 13px 13px 0 rgba(0, 0, 0, 0.4)  
+
+a.button 
+  color: inherit
+
+.button-inline
+  display: inline-flex
+  
+.popup-container
+  display: none
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background-color: $popup-shadow
+  justify-content: center
+  padding: 30px 0
+  font-family: Lato, sans-serif
+  &.is-open 
+    display: flex
+      
+
+.popup-content 
+  background-color: $popup-background-color
+  box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.7)
+  width: 60%
+  height: auto
+  padding: 20px
+  overflow: auto
+  animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both
+  
+@keyframes slide-in
+  0%
+    transform: translateY(-600px) rotateX(-30deg) scale(0)
+    transform-origin: 50% 100%
+    opacity: 0
+  
+  100% 
+    transform: translateY(0) rotateX(0) scale(1)
+    transform-origin: 50% 1400px
+    opacity: 1
+  
+
