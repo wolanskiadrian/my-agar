@@ -11,7 +11,7 @@ export function isMobile() {
   return !isDesktop();
 }
 
-export function blockMobileDevices(content) {
+export function blockContent(content) {
   const desktopOnly = document.createElement("div");
   desktopOnly.classList.add('desktop-experience');
   
@@ -21,9 +21,9 @@ export function blockMobileDevices(content) {
   document.body.appendChild(desktopOnly);
 }
 
-export function isMobileDevice() {  
+export function blockMobileDevice() {  
   if(isMobile()) {
-    blockMobileDevices(mobileMessage);
+    blockContent(mobileMessage);
   }
   
 }
