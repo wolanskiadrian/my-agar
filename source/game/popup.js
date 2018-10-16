@@ -1,21 +1,29 @@
 export class Popup {
   constructor() {
+    this.options = {
+      attributeOpen: "data-open-popup",
+      attributeParams: "data-params-popup",
+      contentClass: "popup-content",
+      containerClass: "popup-container",
+      contentOpenClass: "is-open",
+      contentClosingClass: "is-closing"
+    };
+
     this.listeners = [];
 
     this.container = this.createContainer();
-    
-    // this.container.querySelector(:not(.popup-content)').addEventListener('click', this.close);
-    console.log(document.querySelector('.popup-container:not(.popup-content)'));
+
+    document.body.addEventListener("click", this.close.bind(this));
+
     document.body.appendChild(this.container);
-    this.i = 0;
   }
 
   createContainer() {
     const container = document.createElement("div");
-    container.classList.add("popup-container");
+    container.classList.add(this.options.containerClass);
 
     const content = document.createElement("div");
-    content.classList.add("popup-content");
+    content.classList.add(this.options.contentClass);
 
     container.appendChild(content);
 
@@ -23,8 +31,8 @@ export class Popup {
   }
 
   attach(item) {
-    const type = item.getAttribute("data-open-popup");
-    const params = item.getAttribute("data-params-popup");
+    const type = item.getAttribute(this.options.attributeOpen);
+    const params = item.getAttribute(this.options.attributeParams);
 
     if (!type) {
       return false;
@@ -47,35 +55,37 @@ export class Popup {
     switch (type) {
       case "instruction":
         return this.addContent(
-          "Lorem ipsum dolor sit amet",
           `Lorem ipsum dolor sit amet, 
-        consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-        officia deserunt mollit anim id est laborum.`
+          consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+          officia deserunt mollit anim id est laborum. <a class="close-popup">LOrme</a>`
         );
-      case "question":
-        return this.question(data);
-      case "answer":
-        return this.answer(data);
       default:
         break;
     }
   }
-  
-  close() {
-    console.log(lorem, this.i++);
+
+  close(e) {
+    if (this.container === e.target) {
+      this.container.classList.add(this.options.contentClosingClass);
+      this.container.classList.remove(this.options.contentOpenClass);  
+          
+      setTimeout(() => {
+        this.container.classList.remove(this.options.contentClosingClass);
+      }, 550);
+    }
   }
 
-  question() {}
+  addContent(body) {
+    this.container.classList.add(this.options.contentOpenClass);
+    this.container.querySelector(
+      `.${this.options.contentClass}`
+    ).innerHTML = body;
 
-  answer() {}
-
-  addContent(title, body) {
-    this.container.classList.add("is-open");
-    this.container.querySelector('.popup-content').innerHTML = body;
+    return true;
   }
 }
 

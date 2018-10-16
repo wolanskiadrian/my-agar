@@ -12,8 +12,5 @@ import "./style/style.css";
 // });
 
 import Popup from "./game/popup.js";
-
-console.log(document.querySelectorAll("[data-open-popup]"));
-[...document.querySelectorAll("[data-open-popup]")].map(item =>
-  Popup.attach(item)
-);
+const popupHandlers = document.querySelectorAll("[data-open-popup]");
+[...popupHandlers].map(item => Popup.attach(item));
