@@ -52,6 +52,8 @@ export class Popup {
   }
 
   open(type, data) {
+    // TODO Make global cases like "text", "html", "json" to display
+    // proper type of content and perform action according to this content
     switch (type) {
       case "instruction":
         return this.addContent(
