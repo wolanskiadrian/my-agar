@@ -1,28 +1,28 @@
 export class Popup {
   constructor() {
     this.options = {
-      attributeOpen: "data-open-popup",
-      attributeParams: "data-params-popup",
-      contentClass: "popup-content",
-      containerClass: "popup-container",
-      contentOpenClass: "is-open",
-      contentClosingClass: "is-closing"
+      attributeOpen: 'data-open-popup',
+      attributeParams: 'data-params-popup',
+      contentClass: 'popup-content',
+      containerClass: 'popup-container',
+      contentOpenClass: 'is-open',
+      contentClosingClass: 'is-closing'
     };
 
     this.listeners = [];
 
     this.container = this.createContainer();
 
-    document.body.addEventListener("click", this.close.bind(this));
+    document.body.addEventListener('click', this.close.bind(this));
 
     document.body.appendChild(this.container);
   }
 
   createContainer() {
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     container.classList.add(this.options.containerClass);
 
-    const content = document.createElement("div");
+    const content = document.createElement('div');
     content.classList.add(this.options.contentClass);
 
     container.appendChild(content);
@@ -41,21 +41,21 @@ export class Popup {
     if (params) {
       try {
         const data = JSON.parse(params);
-        item.addEventListener("click", this.open.bind(this, type, data));
+        item.addEventListener('click', this.open.bind(this, type, data));
       } catch (err) {
         throw new Error(err);
       }
       return false;
     }
 
-    item.addEventListener("click", this.open.bind(this, type, null));
+    item.addEventListener('click', this.open.bind(this, type, null));
   }
 
   open(type, data) {
     // TODO Make global cases like "text", "html", "json" to display
     // proper type of content and perform action according to this content
     switch (type) {
-      case "instruction":
+      case 'instruction':
         return this.addContent(
           `Lorem ipsum dolor sit amet, 
           consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
@@ -73,8 +73,8 @@ export class Popup {
   close(e) {
     if (this.container === e.target) {
       this.container.classList.add(this.options.contentClosingClass);
-      this.container.classList.remove(this.options.contentOpenClass);  
-          
+      this.container.classList.remove(this.options.contentOpenClass);
+
       setTimeout(() => {
         this.container.classList.remove(this.options.contentClosingClass);
       }, 550);
