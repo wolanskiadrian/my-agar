@@ -1,3 +1,6 @@
+@import "./animations/slideInAnimation.sass"
+@import "./animations/slideOutAnimation.sass"
+
 $blue: #00f
 
 $button-color: #fff
@@ -8,6 +11,7 @@ $button-min-heigth: 30px
 
 $popup-shadow: rgba(0, 0, 0, 0.5)
 $popup-background-color: #ccc
+
 
 @font-face
   font-family: 'Lato'
@@ -115,26 +119,3 @@ a.button
   overflow: auto
   animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both
   
-@keyframes slide-in
-  0%
-    transform: translateY(-600px) rotateX(-30deg) scale(0)
-    transform-origin: 50% 100%
-    opacity: 0
-  
-  100% 
-    transform: translateY(0) rotateX(0) scale(1)
-    transform-origin: 50% 1400px
-    opacity: 1
-  
-@keyframes slide-out 
-  0% 
-    transform: translateY(0) rotateX(0) scale(1)
-    transform-origin: 50% 1400px
-    opacity: 1
-  
-  100% 
-    transform: translateY(-600px) rotateX(-30deg) scale(0)
-    transform-origin: 50% 100%
-    opacity: 0
-
-
