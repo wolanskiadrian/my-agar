@@ -1,0 +1,74 @@
+.footer
+  display: flex
+  position: absolute
+  bottom: 0px
+  height: 200px
+  width: 100%
+  background: darken(grey, 10)
+  box-shadow: 0 -3px 4px rgba(black, 0.23)
+  transition: transform 0.35s ease-in-out
+  transform: translateY(150px)
+  justify-content: center
+  align-items: center
+  padding: 0 40px
+  color: #ccc
+  box-sizing: border-box
+  font-family: Lato, sans-serif
+    
+.footer:hover, 
+.footer:focus
+  transform: translate(0px)
+
+.footer-column
+  display: flex
+  width: 100%
+  justify-content: space-around
+  height: 100%
+  box-sizing: border-box
+  flex-direction: column
+  padding: 0 10px
+  
+.footer-text
+  width: 100%
+  display: flex
+  justify-content: center
+  flex-direction: column
+  flex: 1 1 auto
+  height: 100%
+  
+.footer-heading
+  font-size: 18px
+  text-align: center
+  width: 100%
+  min-height: 50px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  color: #fff
+  box-sizing: border-box
+  flex: 1 1 auto
+
+.footer-copyright
+  width: 100%
+  min-height: 50px
+  display: flex
+  justify-content: center
+  flex-direction: column
+  box-sizing: border-box
+  font-size: 18px
+  
+.footer-contributors
+  height: 100%
+  justify-content: flex-start
+  box-sizing: border-box
+  list-style: none
+  font-size: 17px
+  width: 100%
+  margin: 0
+  text-align: center
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3)
+  padding-left: 0
+
+.footer-contributor
+  padding: 10px 0
+  font-size: 20px
