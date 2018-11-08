@@ -1,10 +1,10 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
-import { ENEMY } from "./utils/consts";
+import { ENEMY } from './utils/consts';
 
-import { Enemy } from "./enemy";
-import { Map } from "./map";
-import { Tower } from "./tower";
+import { Enemy } from './enemy';
+import { Map } from './map';
+import { Tower } from './tower';
 
 export class Engine {
   constructor(options) {

@@ -5,16 +5,15 @@ const processHTMLPages = require('./processHTMLHelper.js');
 
 const extractCSS = new ExtractTextPlugin('style.css');
 const ProgressBar = new WebpackBar();
-const plugins = [
-  ProgressBar,
-  extractCSS,
-].concat(processHTMLPages());
+const plugins = [ProgressBar, extractCSS].concat(processHTMLPages());
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    './source/index.js'
-  ],
+  entry: {
+    'webpack-dev-server/client?http://localhost:8080':
+      'webpack-dev-server/client?http://localhost:8080',
+    index: './source/index.js',
+    game: './source/game.js'
+  },
   module: {
     rules: [
       {
@@ -36,18 +35,18 @@ module.exports = {
           name: '[path][name].[ext]',
           context: './source'
         }
-      },
-    ],
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.es6'],
+    extensions: ['.js', '.es6']
   },
   output: {
     path: __dirname + '/build',
-    filename: 'index.js',
+    filename: '[name].js'
   },
   devServer: {
     contentBase: './source'
   },
-  plugins,
+  plugins
 };

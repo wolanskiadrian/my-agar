@@ -1,0 +1,37 @@
+@import './../animations/slideInAnimation.scss';
+@import './../animations/slideOutAnimation.scss';
+
+.popup-container {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: $popup-shadow;
+  justify-content: center;
+  padding: 30px 0;
+  font-family: Lato, sans-serif;
+
+  .popup-content {
+    background-color: $popup-background-color;
+    box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.7);
+    width: 60%;
+    height: auto;
+    padding: 20px;
+    overflow: auto;
+    animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  &.is-open {
+    display: flex;
+  }
+
+  &.is-closing {
+    display: flex;
+
+    .popup-content {
+      animation: slide-out 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    }
+  }
+}

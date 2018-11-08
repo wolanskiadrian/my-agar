@@ -8,10 +8,13 @@ module.exports = () => {
 
   return htmlDocuments.map(document => {
     const filename = document.replace(sourcePath, '');
+    const chunkName = filename.replace('.html', '');
+
     return new HtmlWebpackPlugin({
       template: document,
       filename,
-      hash: true,
+      chunks: [chunkName],
+      hash: true
     });
   });
 };

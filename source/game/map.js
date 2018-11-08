@@ -12,7 +12,7 @@ export class Map {
   }
 
   setupBackground() {
-    const background = PIXI.Sprite.fromImage("../../images/background.jpg");
+    const background = PIXI.Sprite.fromImage('../../images/background.jpg');
     background.width = this.app.screen.width;
     background.height = this.app.screen.height;
     this.app.stage.addChild(background);
