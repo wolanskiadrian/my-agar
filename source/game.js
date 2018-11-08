@@ -1,6 +1,5 @@
 import 'normalize.css';
 import './style/style.scss';
-import './style/style.css';
 
 import { Engine } from './game/engine.js';
 
