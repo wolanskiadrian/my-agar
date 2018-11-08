@@ -1,0 +1,65 @@
+@import './animations/slideInAnimation.scss';
+@import './animations/slideOutAnimation.scss';
+@import './global/theme.scss';
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./fonts/Lato-Regular.ttf');
+}
+
+html,
+body {
+  background-color: grey;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+p {
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+  line-height: 1.75em;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: $blue;
+}
+
+.game-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.splash-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+}
+
+.actions-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+}
+
+@import './components/popup.scss';
+@import './components/button.scss';

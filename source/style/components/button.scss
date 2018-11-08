@@ -1,0 +1,30 @@
+.button {
+  display: flex;
+  color: inherit;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  font-family: Lato, sans-serif;
+  min-width: $button-min-width;
+  min-height: $button-min-heigth;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $button-border-color;
+  background-color: $button-background-color;
+  color: $button-color;
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.4s;
+
+  &.button-inline {
+    display: inline-flex;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 13px 13px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+a.button {
+  color: inherit;
+}
