@@ -1,6 +1,6 @@
-import { TweenMax, Linear } from "gsap";
+import { TweenMax, Linear } from 'gsap';
 
-import { ASSETS_PATH, ENEMY } from "../game/utils/consts";
+import { ASSETS_PATH, ENEMY } from '../game/utils/consts';
 
 export class Enemy {
   constructor(app, path, options = {}, callback) {

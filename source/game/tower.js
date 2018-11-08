@@ -1,4 +1,4 @@
-import { ASSETS_PATH, TOWER } from "../game/utils/consts";
+import { ASSETS_PATH, TOWER } from '../game/utils/consts';
 
 export class Tower {
   constructor(app, options = {}) {
