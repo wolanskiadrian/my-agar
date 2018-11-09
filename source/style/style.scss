@@ -7,6 +7,10 @@
   src: url('./fonts/Lato-Regular.ttf');
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   background-color: grey;
