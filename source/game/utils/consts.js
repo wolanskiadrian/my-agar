@@ -36,6 +36,23 @@ export const ENEMY = {
 export const TOWER = {
   weak: {
     asset: 'tower.jpg',
-    strength: 1
+    strength: 1,
+    cost: 3,
+    startX: 40,
+    startY: 200
+  },
+  medium: {
+    asset: 'tower.jpg',
+    strength: 2,
+    cost: 5,
+    startX: 40,
+    startY: 270
+  },
+  strong: {
+    asset: 'tower.jpg',
+    strength: 3,
+    cost: 10,
+    startX: 40,
+    startY: 340
   }
 };
