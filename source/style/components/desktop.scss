@@ -1,0 +1,18 @@
+.desktop-experience {
+  background-image: url("https://picsum.photos/1119/500?random");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  text-align: center;
+  padding: 35px;
+  font-family: Lato, sans-serif;
+  font-weight: lighter;
+  color: #ccc;
+  font-size: 3rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  @media (min-width: $min-desktop-width) {
+    display: none;
+  }
+}
