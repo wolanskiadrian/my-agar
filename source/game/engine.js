@@ -49,13 +49,28 @@ export class Engine {
   placeBaseTower(towerStrength) {
     switch (towerStrength) {
       case 1:
-        new Tower(this.app, TOWER.weak, this.onTowerPlaced.bind(this));
+        new Tower(
+          this.app,
+          TOWER.weak,
+          this.map.linesValues,
+          this.onTowerPlaced.bind(this)
+        );
         break;
       case 2:
-        new Tower(this.app, TOWER.medium, this.onTowerPlaced.bind(this));
+        new Tower(
+          this.app,
+          TOWER.medium,
+          this.map.linesValues,
+          this.onTowerPlaced.bind(this)
+        );
         break;
       case 3:
-        new Tower(this.app, TOWER.strong, this.onTowerPlaced.bind(this));
+        new Tower(
+          this.app,
+          TOWER.strong,
+          this.map.linesValues,
+          this.onTowerPlaced.bind(this)
+        );
         break;
       default:
         return;

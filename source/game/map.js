@@ -45,4 +45,22 @@ export class Map {
 
     return values;
   }
+
+  get linesValues() {
+    const values = [];
+    const points = this.path.graphicsData[0].shape.points;
+
+    for (let i = 0; i < points.length; i += 2) {
+      values.push({
+        x1: points[i],
+        y1: points[i + 1],
+        x2: points[i + 2],
+        y2: points[i + 3]
+      });
+    }
+
+    values.pop();
+
+    return values;
+  }
 }
