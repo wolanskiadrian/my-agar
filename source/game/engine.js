@@ -53,6 +53,7 @@ export class Engine {
           this.app,
           TOWER.weak,
           this.map.linesValues,
+          this.towers,
           this.onTowerPlaced.bind(this)
         );
         break;
@@ -61,6 +62,7 @@ export class Engine {
           this.app,
           TOWER.medium,
           this.map.linesValues,
+          this.towers,
           this.onTowerPlaced.bind(this)
         );
         break;
@@ -69,6 +71,7 @@ export class Engine {
           this.app,
           TOWER.strong,
           this.map.linesValues,
+          this.towers,
           this.onTowerPlaced.bind(this)
         );
         break;

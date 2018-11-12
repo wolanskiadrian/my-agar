@@ -1,13 +1,14 @@
 import { ASSETS_PATH, TOWER } from '../game/utils/consts';
 
 export class Tower {
-  constructor(app, options = {}, linesValues = [], callback) {
+  constructor(app, options = {}, linesValues = [], towers = [], callback) {
     this.app = app;
     this.tower = null;
     this.options = options;
     this.callback = callback;
     this.container = new PIXI.Container();
     this.linesValues = linesValues;
+    this.towers = towers;
 
     this.setup();
   }
@@ -50,7 +51,7 @@ export class Tower {
     this.tower.interactive = false;
     this.tower.buttonMode = false;
 
-    if (this.tower.colisionDetected) {
+    if (this.tower.collisionWithPath || this.tower.collisionWithTowers) {
       this.container.removeChild(this.tower);
     }
 
@@ -63,19 +64,23 @@ export class Tower {
       this.tower.x = Math.round(newPosition.x);
       this.tower.y = Math.round(newPosition.y);
 
-      this.tower.colisionDetected = this.lineRect(
+      this.tower.collisionWithPath = this.lineRect(
         this.linesValues,
-        this.tower.x - 30,
-        this.tower.y - 30,
-        60,
-        60
+        this.tower.x - this.tower.width / 2,
+        this.tower.y - this.tower.height / 2,
+        this.tower.width,
+        this.tower.height
+      );
+
+      this.tower.collisionWithTowers = this.checkCollisionWithTowers(
+        this.towers
       );
     }
   }
 
   // collision detection taken from http://jeffreythompson.org/collision-detection/line-rect.php
   lineRect(lines, rx, ry, rw, rh) {
-    let colision = false;
+    let collision = false;
 
     lines.forEach(line => {
       const left = this.lineLine(
@@ -120,11 +125,11 @@ export class Tower {
       );
 
       if (left || right || top || bottom) {
-        colision = true;
+        collision = true;
       }
     });
 
-    return colision;
+    return collision;
   }
 
   lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -140,6 +145,43 @@ export class Tower {
     if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
       return true;
     }
+    return false;
+  }
+
+  checkCollisionWithTowers(existingTowers) {
+    let collision = false;
+
+    existingTowers.forEach(towerItem => {
+      if (
+        this.contains(
+          this.tower.x,
+          this.tower.y,
+          this.tower.width,
+          this.tower.height,
+          towerItem.x,
+          towerItem.y,
+          towerItem.width,
+          towerItem.height
+        )
+      ) {
+        collision = true;
+      }
+    });
+
+    return collision;
+  }
+
+  // collision detection taken from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+  contains(x1, y1, w1, h1, x2, y2, w2, h2) {
+    if (
+      x1 - w1 / 2 < x2 - w2 / 2 + w2 &&
+      x1 - w1 / 2 + w1 > x2 - w2 / 2 &&
+      y1 - h1 / 2 < y2 - h2 / 2 + h2 &&
+      y1 - h1 / 2 + h1 > y2 - h2 / 2
+    ) {
+      return true;
+    }
+
     return false;
   }
 }
