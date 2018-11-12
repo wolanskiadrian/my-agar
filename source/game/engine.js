@@ -42,7 +42,10 @@ export class Engine {
   }
 
   onTowerPlaced(tower) {
-    this.towers = [...this.towers, tower];
+    if (!tower.collisionWithPath && !tower.collisionWithTowers) {
+      this.towers = [...this.towers, tower];
+    }
+
     this.placeBaseTower(tower.strength);
   }
 
