@@ -7,6 +7,10 @@
   src: url('./fonts/Lato-Regular.ttf');
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   background-color: grey;
@@ -25,7 +29,7 @@ a,
 a:visited,
 a:hover,
 a:active {
-  color: $blue;
+  color: inherit;
 }
 
 @import './components/logo.scss';
@@ -34,3 +38,4 @@ a:active {
 @import './components/popup.scss';
 @import './components/button.scss';
 @import './components/desktop.scss';
+@import './components/footer.scss';
