@@ -15,10 +15,14 @@ export class Tower {
 
   setup() {
     const { startX, startY, strength } = this.options;
+    const dictionaryTowerKey = Object.keys(TOWER).find(key => {
+      return TOWER[key].strength === strength;
+    });
+    const dictionaryTower = TOWER[dictionaryTowerKey];
 
     this.app.stage.addChild(this.container);
 
-    this.tower = PIXI.Sprite.fromImage(`${ASSETS_PATH}${TOWER.weak.asset}`);
+    this.tower = PIXI.Sprite.fromImage(`${ASSETS_PATH}${dictionaryTower.asset}`);
     this.tower.interactive = true;
     this.tower.buttonMode = true;
     this.tower.anchor.set(0.5);
@@ -72,9 +76,7 @@ export class Tower {
         this.tower.height
       );
 
-      this.tower.collisionWithTowers = this.checkCollisionWithTowers(
-        this.towers
-      );
+      this.tower.collisionWithTowers = this.checkCollisionWithTowers(this.towers);
     }
   }
 
@@ -83,46 +85,10 @@ export class Tower {
     let collision = false;
 
     lines.forEach(line => {
-      const left = this.lineLine(
-        line.x1,
-        line.y1,
-        line.x2,
-        line.y2,
-        rx,
-        ry,
-        rx,
-        ry + rh
-      );
-      const right = this.lineLine(
-        line.x1,
-        line.y1,
-        line.x2,
-        line.y2,
-        rx + rw,
-        ry,
-        rx + rw,
-        ry + rh
-      );
-      const top = this.lineLine(
-        line.x1,
-        line.y1,
-        line.x2,
-        line.y2,
-        rx,
-        ry,
-        rx + rw,
-        ry
-      );
-      const bottom = this.lineLine(
-        line.x1,
-        line.y1,
-        line.x2,
-        line.y2,
-        rx,
-        ry + rh,
-        rx + rw,
-        ry + rh
-      );
+      const left = this.lineLine(line.x1, line.y1, line.x2, line.y2, rx, ry, rx, ry + rh);
+      const right = this.lineLine(line.x1, line.y1, line.x2, line.y2, rx + rw, ry, rx + rw, ry + rh);
+      const top = this.lineLine(line.x1, line.y1, line.x2, line.y2, rx, ry, rx + rw, ry);
+      const bottom = this.lineLine(line.x1, line.y1, line.x2, line.y2, rx, ry + rh, rx + rw, ry + rh);
 
       if (left || right || top || bottom) {
         collision = true;
@@ -134,12 +100,8 @@ export class Tower {
 
   lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
     // calculate the direction of the lines
-    const uA =
-      ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) /
-      ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
-    const uB =
-      ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) /
-      ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+    const uA = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
+    const uB = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1));
 
     // if uA and uB are between 0-1, lines are colliding
     if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {

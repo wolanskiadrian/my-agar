@@ -35,7 +35,7 @@ export const ENEMY = {
 
 export const TOWER = {
   weak: {
-    asset: 'tower.jpg',
+    asset: 'tower-weak.jpg',
     strength: 1,
     cost: 3,
     startX: 40,
@@ -44,7 +44,7 @@ export const TOWER = {
     height: 60
   },
   medium: {
-    asset: 'tower.jpg',
+    asset: 'tower-medium.jpg',
     strength: 2,
     cost: 5,
     startX: 40,
@@ -53,7 +53,7 @@ export const TOWER = {
     height: 60
   },
   strong: {
-    asset: 'tower.jpg',
+    asset: 'tower-strong.jpg',
     strength: 3,
     cost: 10,
     startX: 40,
