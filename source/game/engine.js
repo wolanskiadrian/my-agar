@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 
-import { ENEMY } from './utils/consts';
+import { ENEMY, TOWER } from './utils/consts';
 
 import { Enemy } from './enemy';
 import { Map } from './map';
@@ -11,14 +11,15 @@ export class Engine {
     this.app = null;
     this.enemySpawnTime = 6000;
     this.options = options;
+    this.towers = [];
 
     this.setup();
   }
 
   setup() {
     this.init();
+    this.initTowers();
     this.manageEnemies();
-    this.manageTowers();
   }
 
   init() {
@@ -33,13 +34,40 @@ export class Engine {
     this.map = new Map(this.app);
   }
 
+  initTowers() {
+    // 3 Base towers on side
+    this.placeBaseTower(1);
+    this.placeBaseTower(2);
+    this.placeBaseTower(3);
+  }
+
+  onTowerPlaced(tower) {
+    if (!tower.collisionWithPath && !tower.collisionWithTowers) {
+      this.towers = [...this.towers, tower];
+    }
+
+    this.placeBaseTower(tower.strength);
+  }
+
+  placeBaseTower(towerStrength) {
+    switch (towerStrength) {
+      case 1:
+        new Tower(this.app, TOWER.weak, this.map.linesValues, this.towers, this.onTowerPlaced.bind(this));
+        break;
+      case 2:
+        new Tower(this.app, TOWER.medium, this.map.linesValues, this.towers, this.onTowerPlaced.bind(this));
+        break;
+      case 3:
+        new Tower(this.app, TOWER.strong, this.map.linesValues, this.towers, this.onTowerPlaced.bind(this));
+        break;
+      default:
+        return;
+    }
+  }
+
   manageEnemies() {
     this.spawnEnemy();
     setInterval(() => this.spawnEnemy(), this.enemySpawnTime);
-  }
-
-  manageTowers() {
-    new Tower(this.app);
   }
 
   spawnEnemy() {
@@ -47,6 +75,6 @@ export class Engine {
   }
 
   onEnemyMove(position) {
-    // console.log("on move", position);
+    // console.log('on move', position);
   }
 }
