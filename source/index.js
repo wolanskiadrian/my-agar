@@ -1,6 +1,8 @@
-import 'normalize.css';
-import './style/style.scss';
+import { Engine } from './game/engine';
 
-import Popup from './ui-components/popup.js';
-const popupHandlers = document.querySelectorAll('[data-open-popup]');
-[...popupHandlers].map(item => Popup.attach(item));
+new Engine({
+  background: 0x1099bb,
+  container: 'js-game',
+  height: 600,
+  width: 600
+});

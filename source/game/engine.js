@@ -1,25 +1,33 @@
 import * as PIXI from 'pixi.js';
 
+<<<<<<< Updated upstream
 import { ENEMY, TOWER } from './utils/consts';
 
 import { Enemy } from './enemy';
 import { Map } from './map';
 import { Tower } from './tower';
 
+=======
+>>>>>>> Stashed changes
 export class Engine {
   constructor(options) {
     this.app = null;
-    this.enemySpawnTime = 6000;
     this.options = options;
+<<<<<<< Updated upstream
     this.towers = [];
 
+=======
+>>>>>>> Stashed changes
     this.setup();
   }
 
   setup() {
     this.init();
+<<<<<<< Updated upstream
     this.initTowers();
     this.manageEnemies();
+=======
+>>>>>>> Stashed changes
   }
 
   init() {
@@ -30,6 +38,7 @@ export class Engine {
     });
 
     document.getElementById(container).appendChild(this.app.view);
+<<<<<<< Updated upstream
 
     this.map = new Map(this.app);
   }
@@ -76,5 +85,7 @@ export class Engine {
 
   onEnemyMove(position) {
     // console.log('on move', position);
+=======
+>>>>>>> Stashed changes
   }
 }

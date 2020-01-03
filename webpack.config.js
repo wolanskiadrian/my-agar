@@ -9,10 +9,9 @@ const plugins = [ProgressBar, extractCSS].concat(processHTMLPages());
 
 module.exports = {
   entry: {
-    'webpack-dev-server/client?http://localhost:8080':
-      'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:8080': 'webpack-dev-server/client?http://localhost:8080',
     index: './source/index.js',
-    game: './source/game.js'
+    game: './source/index.js'
   },
   module: {
     rules: [

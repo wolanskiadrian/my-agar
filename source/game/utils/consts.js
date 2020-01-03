@@ -1,4 +1,5 @@
 export const ASSETS_PATH = '/images/';
+<<<<<<< Updated upstream
 
 export const ENEMY = {
   weak: {
@@ -62,3 +63,5 @@ export const TOWER = {
     height: 60
   }
 };
+=======
+>>>>>>> Stashed changes
