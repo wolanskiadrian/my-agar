@@ -27,4 +27,4 @@ Sample files are included in `source`. These files are meant to be replaced. The
 
 # Author
 
-Krzysztof Wyrzykowski ([kryz.me](http://kryz.me))
+Adrian Wolanski
